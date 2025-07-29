@@ -241,8 +241,8 @@ export default function ContactUs(props) {
         alignSelf="stretch"
         size="large"
         isDisabled={false}
-        variation="primary"
-        children="Primary Button"
+        variation="link"
+        children="Link Button"
         {...getOverrideProps(overrides, "Button")}
       ></Button>
       <Flex
