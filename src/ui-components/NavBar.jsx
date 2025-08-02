@@ -6,16 +6,17 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
-import { Flex, Icon, Image, Text } from "@aws-amplify/ui-react";
+import { getOverrideProps, useAuth } from "./utils";
+import { Button, Flex, Icon, Image, Text } from "@aws-amplify/ui-react";
 export default function NavBar(props) {
   const { overrides, ...rest } = props;
+  const authAttributes = useAuth().user?.attributes ?? {};
   return (
     <Flex
       gap="20px"
       direction="row"
       width="1440px"
-      height="unset"
+      height="109px"
       justifyContent="center"
       alignItems="center"
       position="relative"
@@ -90,7 +91,7 @@ export default function NavBar(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Add Pet"
-          {...getOverrideProps(overrides, "Add Pet")}
+          {...getOverrideProps(overrides, "Add Pet29767077")}
         ></Text>
       </Flex>
       <Flex
@@ -107,20 +108,65 @@ export default function NavBar(props) {
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 32129767081")}
       >
-        <Image
-          width="45px"
-          height="45px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
+        <Button
+          width="unset"
+          height="unset"
+          shrink="0"
+          size="small"
+          isDisabled={false}
+          variation="primary"
+          children="Sign Out"
+          {...getOverrideProps(overrides, "Button")}
+        ></Button>
+        <Flex
+          gap="20px"
+          direction="column"
+          width="unset"
+          height="69px"
+          justifyContent="space-between"
+          alignItems="center"
           shrink="0"
           position="relative"
-          borderRadius="160px"
           padding="0px 0px 0px 0px"
-          objectFit="cover"
-          {...getOverrideProps(overrides, "image")}
-        ></Image>
+          {...getOverrideProps(overrides, "Frame 420")}
+        >
+          <Image
+            width="45px"
+            height="45px"
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            shrink="0"
+            position="relative"
+            borderRadius="160px"
+            padding="0px 0px 0px 0px"
+            objectFit="cover"
+            src={authAttributes["profile"]}
+            {...getOverrideProps(overrides, "image")}
+          ></Image>
+          <Text
+            fontFamily="Inter"
+            fontSize="16px"
+            fontWeight="700"
+            color="rgba(0,0,0,1)"
+            lineHeight="24px"
+            textAlign="left"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children={authAttributes["name"]}
+            {...getOverrideProps(overrides, "Add Pet39231079")}
+          ></Text>
+        </Flex>
       </Flex>
     </Flex>
   );

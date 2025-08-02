@@ -5,6 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
+import { Pet } from "../models";
 import { ButtonProps, DividerProps, FlexProps, IconProps, ImageProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -40,6 +41,8 @@ export declare type AddPetOverridesProps = {
     Button3901470?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type AddPetProps = React.PropsWithChildren<Partial<FlexProps> & {
+    pet?: Pet;
+} & {
     overrides?: AddPetOverridesProps | undefined | null;
 }>;
 export default function AddPet(props: AddPetProps): React.ReactElement;

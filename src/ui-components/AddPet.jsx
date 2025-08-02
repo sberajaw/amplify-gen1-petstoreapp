@@ -6,12 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { Pet } from "../models";
 import {
   getOverrideProps,
   useDataStoreCreateAction,
+  useDataStoreUpdateAction,
   useStateMutationAction,
 } from "./utils";
-import { Pet } from "../models";
 import { schema } from "../models/schema";
 import {
   Button,
@@ -24,7 +25,7 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 export default function AddPet(props) {
-  const { overrides, ...rest } = props;
+  const { pet, overrides, ...rest } = props;
   const [
     textFieldTwoNineSevenSixSixNineTwoTwoValue,
     setTextFieldTwoNineSevenSixSixNineTwoTwoValue,
@@ -58,6 +59,19 @@ export default function AddPet(props) {
       image: textFieldThreeNineZeroOneFourSixTwoValue,
       color: textFieldThreeNineZeroOneFourFiveFiveValue,
     },
+    model: Pet,
+    schema: schema,
+  });
+  const buttonThreeNineZeroOneFourSevenZeroOnClick = useDataStoreUpdateAction({
+    fields: {
+      name: textFieldTwoNineSevenSixSixNineTwoTwoValue,
+      age: textFieldTwoNineSevenSixSixNineTwoThreeValue,
+      breed: textFieldTwoNineSevenSixSixNineTwoFourValue,
+      about: textFieldThreeNineZeroOneFourFourEightValue,
+      image: textFieldThreeNineZeroOneFourSixTwoValue,
+      color: textFieldThreeNineZeroOneFourFiveFiveValue,
+    },
+    id: pet?.id,
     model: Pet,
     schema: schema,
   });
@@ -165,7 +179,7 @@ export default function AddPet(props) {
         </Flex>
         <Divider
           width="unset"
-          height="1px"
+          height="2px"
           shrink="0"
           alignSelf="stretch"
           size="small"
@@ -197,7 +211,7 @@ export default function AddPet(props) {
             borderRadius="160px"
             padding="0px 0px 0px 0px"
             objectFit="cover"
-            src="https://images.unsplash.com/photo-1535930749574-1399327ce78f?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             {...getOverrideProps(overrides, "image")}
           ></Image>
         </Flex>
@@ -362,9 +376,12 @@ export default function AddPet(props) {
             height="unset"
             shrink="0"
             size="default"
-            isDisabled={true}
+            isDisabled={false}
             variation="primary"
             children="Update"
+            onClick={() => {
+              buttonThreeNineZeroOneFourSevenZeroOnClick();
+            }}
             {...getOverrideProps(overrides, "Button3901470")}
           ></Button>
         </Flex>
